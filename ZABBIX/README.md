@@ -1,6 +1,11 @@
 # ZABBIX
 [![N|Solid](https://assets.zabbix.com/img/logo/zabbix_logo_black_and_white.png)](https://docs.ansible.com/ansible/latest/index.html)
 
+### Creditos
+
+ Giovani Balarini - https://github.com/giovanibalarini
+ Rafael Poeys - https://github.com/rafaelpoeys
+ 
 Repositório destinado a playbooks e códigos feito em Ansible.
 
   - Debian 8 e 9
