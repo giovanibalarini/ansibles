@@ -1,0 +1,2 @@
+[hostsdocliente]
+web ansible_user=giovani ansible_host=192.168.1.10

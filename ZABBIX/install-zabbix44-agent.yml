@@ -1,0 +1,53 @@
+  - name: Teste de Ping host
+    ping:
+
+  - name: Download Zabbix Repository Debian 9
+    get_url:
+      url: https://repo.zabbix.com/zabbix/4.4/debian/pool/main/z/zabbix-release/zabbix-release_4.4-1+buster_all.deb 
+      dest: /tmp/zabbix-4.4-agent.deb
+      mode: '0440'
+    when: (ansible_pkg_mgr == "apt" and ansible_distribution == "Debian" and ansible_distribution_major_version >= '10' )
+
+  - name: Download Zabbix Repository Debian 9
+    get_url:
+      url: https://repo.zabbix.com/zabbix/4.4/debian/pool/main/z/zabbix-release/zabbix-release_4.4-1+stretch_all.deb 
+      dest: /tmp/zabbix-4.4-agent.deb
+      mode: '0440'
+    when: (ansible_pkg_mgr == "apt" and ansible_distribution == "Debian" and ansible_distribution_major_version >= '9' )
+
+  - name: Download Zabbix Repository Debian 8
+    get_url:
+      url: https://repo.zabbix.com/zabbix/4.4/debian/pool/main/z/zabbix-release/zabbix-release_4.4-1+jessie_all.deb 
+      dest: /tmp/zabbix-4.4-agent.deb
+      mode: '0440'
+      force: yes
+    when: (ansible_pkg_mgr == "apt" and ansible_distribution == "Debian" and ansible_distribution_major_version == '8' )
+
+  - name: Install package Zabbix Agent
+    apt:
+      deb: /tmp/zabbix-4.4-agent.deb
+    
+  - name: update apt-get
+    apt:
+      update_cache: yes
+
+  - name: install basic Zabbix packages
+    apt:
+      name: "{{ packages }}"
+    vars:
+      packages: ['zabbix-agent','zabbix-sender','zabbix-get']
+
+  - name: modified metadata cli
+    template:
+      src: zbxconfig/zabbix-agent.j2
+      dest: /etc/zabbix/zabbix_agentd.conf
+      mode: '644'
+
+
+  - name: Restart service zabbix-agent
+    systemd:
+      name: zabbix-agent
+      state: restarted
+      enabled: yes
+
+...

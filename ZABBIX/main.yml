@@ -1,0 +1,22 @@
+---
+- hosts: "{{ cli_host }}"
+  remote_user: "{{ l_user }}"
+  become: yes
+  become_method: su
+  become_user: root
+  gather_facts: no
+  pre_tasks:
+  - name: 'atualizando repo'
+    raw: 'apt-get update'
+  - name: 'instalando o python'
+    raw: 'apt-get install -y python python3'
+
+  gather_facts: yes
+  tasks:
+    - name: Zabbix3.4
+      include: install-zabbix34-agent.yml
+      when: ({{ version_zbx }} == 3.4)
+
+    - name: Zabbix4.4
+      include: install-zabbix44-agent.yml
+      when: ({{ version_zbx }} == 4.4)
