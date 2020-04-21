@@ -1,22 +1,21 @@
 # ZABBIX
 [![N|Solid](https://assets.zabbix.com/img/logo/zabbix_logo_black_and_white.png)](https://docs.ansible.com/ansible/latest/index.html)
 
-### Creditos
+### Créditos
 
  Giovani Balarini - https://github.com/giovanibalarini
  Rafael Poeys - https://github.com/rafaelpoeys
  
-Repositório destinado a playbooks e códigos feito em Ansible.
+Repositório destinado à playbooks e códigos feito em Ansible.
 
-  - Debian 8 e 9
+  - Debian Jessie ou superior
   - Ansible
   - Zabbix
 
-### Destalhes antes de proseguir:
-O documento e estinado a pessoas que estão em busca de melhorar os seus playbooks de ansible ou que precisam
-automatizar a instalação de agents zabbix no ambiente.
+### Detalhes antes de prosseguir:
+O documento é destinado à pessoas que estão em busca de melhorar os seus playbooks ou e precisam automatizar a instalação de agents zabbix no ambiente.
 
-#### Entendendo alguns parametros do ansible-playbook
+#### Entendendo alguns parâmetros do ansible-playbook
 
 ```sh
 # -e version_zbx=4.4  # versão do zabbix. O código suporta versão 3.4 e 4.4 
